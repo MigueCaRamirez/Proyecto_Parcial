@@ -1,0 +1,26 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Distribuye las cartas */
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    flex: 0 1 calc(18rem); /* Tamaño fijo para cada carta */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    width: 100%; /* Se ajusta al ancho del contenedor de la tarjeta */
+    height: 200px; /* Altura fija para todas las imágenes */
+    border-top-left-radius: 10px; /* Opcional: redondea las esquinas superiores */
+    border-top-right-radius: 10px;
+}

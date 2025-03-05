@@ -1,5 +1,6 @@
 import { use, useEffect, useState } from "react";
 import bootstrap from "bootstrap/dist/css/bootstrap.min.css"; 
+import './Clase.css'
 function Api() {
 
     const [productos,setProductos] = useState([]);
@@ -16,23 +17,22 @@ function Api() {
 
     return(
         <>
-            <ul>
-                {productos.map((producto) => (
-                    <li>
-                        <div className="img-fluit">
-                        <div className="card" style={{width: "18rem"}}>
-                        <img src={producto.image} className="card-img-top" alt="producto.title"/>
+            <div className="cards-container">
+                {productos.map((producto, index) => (
+                    <div key={index} className="card" style={{ width: "18rem" }}>
+                        <img
+                            src={producto.image}
+                            className="card-img-top"
+                            alt={producto.title}
+                        />
                         <div className="card-body">
                             <h5 className="card-title">{producto.title}</h5>
                             <p className="card-text">{producto.description}.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" className="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
-                        </div>
-
-                    </li>
                 ))}
-            </ul>
+            </div>
         </>
 
     ); 
