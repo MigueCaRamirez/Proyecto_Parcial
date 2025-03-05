@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import Cabecera from './Pagina';
+import Buscar from './Navegador';
 import Api from './Clase';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Cabecera />
+    <Buscar/>
     <Api />
+    
   </React.StrictMode>
 );
 
