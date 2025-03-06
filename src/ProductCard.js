@@ -11,7 +11,7 @@ return (
     <Card.Img variant="top" src={producto.image} style={{ height: "200px", objectFit: "contain" }} />
     <Card.Body>
         <Card.Title>{producto.title}</Card.Title>
-        <Card.Text>💲 {producto.price}</Card.Text>
+        <Card.Text>💲{producto.price}</Card.Text>
         <Button variant="primary" onClick={() => setModalShow(true)}>
         Ver más
         </Button>

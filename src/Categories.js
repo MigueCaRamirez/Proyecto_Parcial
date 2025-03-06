@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function Categories({ onSelectCategory }) {
 const categories = ["all", "electronics", "jewelery", "men's clothing", "women's clothing"];
 
@@ -10,7 +11,7 @@ return (
     {categories.map((category, index) => (
         <button
         key={index}
-        className="btn btn-outline-primary mx-2"
+        className="btn btn-outline-primary rounded-pill hover:bg-primary fw-bold text-black mx-2"
         onClick={() => onSelectCategory(category)}
         >
         {category === "all" ? "Todos" : category}
