@@ -2,6 +2,8 @@ import { use, useEffect, useState } from "react";
 import bootstrap from "bootstrap/dist/css/bootstrap.min.css"; 
 function Api() {
 
+    //Prueba de cambios
+
     const [productos,setProductos] = useState([]);
 
     useEffect(() => {
