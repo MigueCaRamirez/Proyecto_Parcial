@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { Card, Button } from "react-bootstrap";
+import ProductModal from "./ProductModal";
 
 function ProductCard({ producto }) {
+const [modalShow, setModalShow] = useState(false);
+
 return (
-<div className="col-md-4 mb-4">
-    <div className="card h-100 shadow-lg">
-    <img src={producto.image} className="card-img-top p-3" alt={producto.title} />
-    <div className="card-body d-flex flex-column">
-        <h5 className="card-title">{producto.title}</h5>
-        <p className="card-text text-muted flex-grow-1">
-        {producto.description.substring(0, 100)}...
-        </p>
-        <div className="d-flex justify-content-between align-items-center">
-        <span className="fw-bold text-primary">${producto.price}</span>
-        <a href="#" className="btn btn-primary">Ver más</a>
-        </div>
-    </div>
-    </div>
-</div>
+<>
+    <Card style={{ width: "18rem" }} className="m-3">
+    <Card.Img variant="top" src={producto.image} style={{ height: "200px", objectFit: "contain" }} />
+    <Card.Body>
+        <Card.Title>{producto.title}</Card.Title>
+        <Card.Text>💲 {producto.price}</Card.Text>
+        <Button variant="primary" onClick={() => setModalShow(true)}>
+        Ver más
+        </Button>
+    </Card.Body>
+    </Card>
+
+    {/* Modal que se muestra al hacer clic en "Ver más" */}
+    <ProductModal show={modalShow} handleClose={() => setModalShow(false)} product={producto} />
+</>
 );
 }
 
