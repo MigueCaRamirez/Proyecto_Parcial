@@ -6,13 +6,18 @@ function Api() {
     const [productos,setProductos] = useState([]);
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
-        .then((res) => res.json())
-        .then(data => {
-            setProductos(data)  
-            localStorage.setItem('products', data); 
-        })
-        .catch((error) => console.error('Error consultado:', error))
+            const listaProductos = localStorage.getItem('products');
+            if(listaProductos){
+                setProductos(JSON.stringify(listaProductos));
+            }else{
+                fetch('https://fakestoreapi.com/products')
+                .then((res) => res.json())
+                .then(data => {
+                    setProductos(data)  
+                    localStorage.setItem('products', data); 
+                })
+                .catch((error) => console.error('Error consultado:', error))
+            }
     },[])
 
     return(
