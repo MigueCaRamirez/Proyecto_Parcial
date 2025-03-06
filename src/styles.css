@@ -1,0 +1,35 @@
+/* 💙 Cambiar el color del navbar */
+.navbar {
+background-color: #0d6efd !important; /* Azul Bootstrap */
+}
+
+/* 🛍️ Cambiar el color del texto del navbar */
+.navbar-brand {
+font-size: 1.8rem;
+font-weight: bold;
+color: white !important;
+}
+
+/* 🎨 Estilos para los productos */
+.card {
+border-radius: 15px;
+transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+transform: scale(1.05);
+}
+
+/* 🖼️ Ajustar imágenes de productos */
+.card img {
+height: 200px;
+object-fit: contain;
+}
+
+/* 🛒 Centrar el título de la tienda */
+h2 {
+font-size: 2rem;
+font-weight: bold;
+color: #333;
+text-align: center;
+}
