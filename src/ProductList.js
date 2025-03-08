@@ -1,50 +1,65 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Navbar from "./navbar";
-import Categories from "./Categories";
+import './styles.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+//import Categorias from "./Categories";
 
 function ProductList() {
 const [productos, setProductos] = useState([]);
-const [filteredProducts, setFilteredProducts] = useState([]);
-const [selectedCategory, setSelectedCategory] = useState("all");
+const [filtrarProductos, setfiltrarProductos] = useState([]);
+const [selectedCategory, setSelectedCategory] = useState(["all"]);
 
 useEffect(() => {
 fetch("https://fakestoreapi.com/products")
     .then((res) => res.json())
     .then((data) => {
     setProductos(data);
-    setFilteredProducts(data); // Inicialmente mostramos todo
+    setfiltrarProductos(data); // Inicialmente mostramos todo
     })
     .catch((error) => console.error("Error consultando:", error));
 }, []);
 
-const handleSearch = (searchTerm) => {
-const filtered = productos.filter((producto) =>
-    producto.title.toLowerCase().includes(searchTerm.toLowerCase())
+const handleSearch = (Buscar) => {
+const filtrar = productos.filter((producto) =>
+    producto.title.toLowerCase().includes(Buscar.toLowerCase())
 );
-setFilteredProducts(filtered);
+setfiltrarProductos(filtrar);
 };
 
-const handleCategorySelect = (category) => {
-setSelectedCategory(category);
-if (category === "all") {
-    setFilteredProducts(productos);
-} else {
-    const filtered = productos.filter((producto) => producto.category === category);
-    setFilteredProducts(filtered);
-}
+const handleCategorySelect = (categoria) => {
+    let categorias;
+    if (categoria === "all") {
+        categorias = ["all"];
+    } else {
+        if (selectedCategory.includes(categoria)) {
+            categorias = selectedCategory.filter(cat => cat !== categoria);
+        } else {
+            categorias = [...selectedCategory.filter(cat => cat !== "all"), categoria];
+        }
+    }
+    setSelectedCategory(categorias);
+
+    if (categorias.includes("all") || categorias.length === 0) {
+        setfiltrarProductos(productos);
+    } else {
+        const Filtrar = productos.filter((producto) =>
+            categorias.includes(producto.category)
+        );
+        setfiltrarProductos(Filtrar);
+    }
 };
 
 return (
 <div>
-    <Navbar onSearch={handleSearch} />
-    <Categories onSelectCategory={handleCategorySelect} />
+    <Navbar onSearch={handleSearch} onSelectCategory={handleCategorySelect}  />
 
     <div className="container mt-4">
     <h2 className="text-center mb-4">Lista de Productos</h2>
     <div className="row">
-        {filteredProducts.length > 0 ? (
-        filteredProducts.map((producto) => (
+        {filtrarProductos.length > 0 ? (
+        filtrarProductos.map((producto) => (
             <ProductCard key={producto.id} producto={producto} />
         ))
         ) : (

@@ -1,7 +1,10 @@
 import React, {useState} from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-function Navbar({ onSearch}){
+function Navbar({onSearch, onSelectCategory}){
     const [searchTerm, setSearchTerm] = useState("");
+    const categorias = ["all", "electronics", "jewelery", "men's clothing", "women's clothing"];
 
     const hanleSubmit = (e) => {
         e.preventDefault();
@@ -26,6 +29,19 @@ function Navbar({ onSearch}){
                         />
                         <button className="btn btn-outline-succes" type="submit">Buscar</button>
                     </form>
+                    <div className="d-flex ms-3"> 
+                        {categorias.map((categoria, index) =>(
+                            <div key={index} className="form-check form-check-inline">
+                                <input type="checkbox" className="form-check-input" id={`categoria-${index}`}
+                                onChange={() => onSelectCategory(categoria)}
+                                />
+                                <label className="form-check-label text-white" htmlFor={`categoria-${index}`}>
+                                    {categoria === "all" ? "Todos" : categoria}
+                                </label>
+                            </div>
+                        ))}
+
+                    </div>
                 </div>
             </div>
         </nav>

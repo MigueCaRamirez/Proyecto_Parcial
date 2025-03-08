@@ -1,34 +1,47 @@
 
 .navbar {
-background-color: #0d6efd !important; /* Azul Bootstrap */
+    background-color: #2a579b !important; /* Azul Bootstrap */
 }
-
-
+    
+    
 .navbar-brand {
-font-size: 1.8rem;
-font-weight: bold;
-color: white !important;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+    font-weight: bold;
 }
-
-
+    
+    
 .card {
-border-radius: 15px;
-transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
 }
-
+    
 .card:hover {
-transform: scale(1.05);
+    transform: scale(1.05);
 }
-
+    
 .card img {
-height: 200px;
-object-fit: contain;
+    height: 200px;
+    object-fit: contain;
+}
+    
+    
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+button {
+    background-color: #92c4f5 !important;
+    color: white !important; 
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+    font-weight: bold !important;
+}
 
-h2 {
-font-size: 2rem;
-font-weight: bold;
-color: #333;
-text-align: center;
+button:hover {
+    background-color: #66a4e2 !important;
 }

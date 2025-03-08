@@ -1,4 +1,4 @@
-import ProductList from "./ProductList";
+import ProductList from "./ProductList"; 
 
 function Api() {
     return <ProductList />;
