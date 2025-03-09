@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {ProductModal} from "./ProductModal";
 
 function ProductCard({ producto }) {
@@ -12,9 +14,14 @@ return (
     <Card.Body>
         <Card.Title>{producto.title}</Card.Title>
         <Card.Text>💲 {producto.price}</Card.Text>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-        Ver más
-        </Button>
+        <div style={{display: "flex", justifyItems: "center", justifyContent: "space-between"}}>
+            <Button variant="primary" onClick={() => setModalShow(true)}>
+            Ver más
+            </Button>
+            <Button variant="agregar" class = "botonCarrito">
+            🛒Agregar
+            </Button>
+            </div>
     </Card.Body>
     </Card>
 

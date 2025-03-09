@@ -45,3 +45,14 @@ button {
 button:hover {
     background-color: #66a4e2 !important;
 }
+
+.botonCarrito{
+    background-Color: #51c16b !important;
+    border-Color: #28a745 !important;
+    border-radius: 5px !important; 
+}
+
+.botonCarrito:hover{
+    background-Color: #218838 !important;
+    border-Color: #1e7e34;
+}
