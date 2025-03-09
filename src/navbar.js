@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-function Navbar({onSearch, onSelectCategory}){
+function Navbar({onSearch, onSelectCategory, onAddProduct}) {
     const [searchTerm, setSearchTerm] = useState("");
     const categorias = ["all", "electronics", "jewelery", "men's clothing", "women's clothing"];
 
@@ -40,8 +40,8 @@ function Navbar({onSearch, onSelectCategory}){
                                 </label>
                             </div>
                         ))}
-
                     </div>
+                    <button type="button" className="btn btn-outline-success" onClick={onAddProduct}>Agregar producto</button>
                 </div>
             </div>
         </nav>

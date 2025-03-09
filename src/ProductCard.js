@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
-import ProductModal from "./ProductModal";
+import {ProductModal} from "./ProductModal";
 
 function ProductCard({ producto }) {
 const [modalShow, setModalShow] = useState(false);
