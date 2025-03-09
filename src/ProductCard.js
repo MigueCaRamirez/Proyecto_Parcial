@@ -18,9 +18,9 @@ return (
             <Button variant="primary" onClick={() => setModalShow(true)}>
             Ver más
             </Button>
-            <Button variant="agregar" class = "botonCarrito">
+            <button variant="agregar" class = "botonCarrito">
             🛒Agregar
-            </Button>
+            </button>
             </div>
     </Card.Body>
     </Card>

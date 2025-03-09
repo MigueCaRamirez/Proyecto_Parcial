@@ -1,6 +1,6 @@
 
 .navbar {
-    background-color: #2a579b !important; /* Azul Bootstrap */
+    background-color: #2a579b !important; 
 }
     
     
@@ -48,11 +48,12 @@ button:hover {
 
 .botonCarrito{
     background-Color: #51c16b !important;
-    border-Color: #28a745 !important;
-    border-radius: 5px !important; 
+    /*border-Color: #51c16b !important;*/
+    border-radius: 5px !important;
+    transition: background-color 0.5s ease !important;
 }
 
 .botonCarrito:hover{
-    background-Color: #218838 !important;
-    border-Color: #1e7e34;
+    background-Color: #3fa354 !important;
+    border-Color: #3fa354 !important;
 }
