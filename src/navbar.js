@@ -1,17 +1,24 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-function Navbar({onSearch, onSelectCategory, onAddProduct}) {
+function Navbar({ onSearch, onSelectCategory, onAddProduct }) {
     const [searchTerm, setSearchTerm] = useState("");
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("all");
     const categorias = ["all", "electronics", "jewelery", "men's clothing", "women's clothing"];
 
-    const hanleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        onSearch(searchTerm)
+        onSearch(searchTerm);
     };
 
-    return(
+    const handleCategoryChange = (e) => {
+        const nuevaCategoria = e.target.value;
+        setCategoriaSeleccionada(nuevaCategoria);
+        onSelectCategory(nuevaCategoria);
+    };
+
+    return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
                 <a className="navbar-brand" href="#">🛒 Mi Tienda</a>
@@ -19,7 +26,7 @@ function Navbar({onSearch, onSelectCategory, onAddProduct}) {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <form className="d-flex ms-auto" onSubmit={hanleSubmit}>
+                    <form className="d-flex ms-auto" onSubmit={handleSubmit}>
                         <input
                             className="form-control me-2"
                             type="search"
@@ -27,25 +34,27 @@ function Navbar({onSearch, onSelectCategory, onAddProduct}) {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
-                        <button className="btn btn-outline-succes" type="submit">Buscar</button>
+                        <button className="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
-                    <div className="d-flex ms-3"> 
-                        {categorias.map((categoria, index) =>(
-                            <div key={index} className="form-check form-check-inline">
-                                <input type="checkbox" className="form-check-input" id={`categoria-${index}`}
-                                onChange={() => onSelectCategory(categoria)}
-                                />
-                                <label className="form-check-label text-white" htmlFor={`categoria-${index}`}>
+
+                    {/* Selector de categorías */}
+                    <div className="ms-3">
+                        <select className="form-select" value={categoriaSeleccionada} onChange={handleCategoryChange}>
+                            {categorias.map((categoria, index) => (
+                                <option key={index} value={categoria}>
                                     {categoria === "all" ? "Todos" : categoria}
-                                </label>
-                            </div>
-                        ))}
+                                </option>
+                            ))}
+                        </select>
                     </div>
-                    <button type="button" className="btn btn-outline-success" onClick={onAddProduct}>Agregar producto</button>
+
+                    <button type="button" className="btn btn-outline-success ms-3" onClick={onAddProduct}>
+                        Agregar producto
+                    </button>
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
 export default Navbar;

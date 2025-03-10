@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Navbar from "./navbar";
-import { AgregarProducto } from "./ProductModal";
+import { AgregarProducto } from "./AddProduct";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import Categorias from "./Categories";
