@@ -1,34 +1,46 @@
 import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Dropdown } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import {ProductModal} from "./ProductModal";
+import { ProductModal } from "./ProductModal";
 
 function ProductCard({ producto }) {
-const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
-return (
-<>
-    <Card style={{ width: "18rem" }} className="m-3">
-    <Card.Img variant="top" src={producto.image} style={{ height: "200px", objectFit: "contain" }} />
-    <Card.Body>
-        <Card.Title>{producto.title}</Card.Title>
-        <Card.Text>💲 {producto.price}</Card.Text>
-        <div style={{display: "flex", justifyItems: "center", justifyContent: "space-between"}}>
+  return (
+    <>
+      <Card style={{ width: "18rem", position: "relative" }} className="m-3">
+        {/* Menú de opciones (tres puntos) */}
+        <Dropdown style={{ position: "absolute", top: "10px", left: "10px" }}>
+          <Dropdown.Toggle variant="light" size="sm" id="dropdown-basic" style={{ border: "none", background: "transparent" }}>
+            ⋮
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#">Editar</Dropdown.Item>
+            <Dropdown.Item href="#">Eliminar</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+
+        <Card.Img variant="top" src={producto.image} style={{ height: "200px", objectFit: "contain" }} />
+        <Card.Body className="d-flex flex-column">
+          <Card.Title>{producto.title}</Card.Title>
+          <Card.Text className="flex-grow-1">💲 {producto.price}</Card.Text>
+          <div className="mt-auto d-flex justify-content-between">
             <Button variant="primary" onClick={() => setModalShow(true)}>
-            Ver más
+              Ver más
             </Button>
-            <button variant="agregar" class = "botonCarrito">
-            🛒Agregar
+            <button variant="agregar" className="botonCarrito">
+              🛒Agregar
             </button>
-            </div>
-    </Card.Body>
-    </Card>
+          </div>
+        </Card.Body>
+      </Card>
 
-    {/* Modal que se muestra al hacer clic en "Ver más" */}
-    <ProductModal show={modalShow} handleClose={() => setModalShow(false)} product={producto} />
-</>
-);
+      {/* Modal que se muestra al hacer clic en "Ver más" */}
+      <ProductModal show={modalShow} handleClose={() => setModalShow(false)} product={producto} />
+    </>
+  );
 }
 
 export default ProductCard;
