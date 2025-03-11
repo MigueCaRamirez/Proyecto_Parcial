@@ -21,7 +21,7 @@ function AgregarProducto({ show, handleClose, onAddProduct }) {
     }
   }, [show]);
 
-  // Maneja la carga de la imagen y valida que sea de tipo imagen
+  // Maneja la carga de la imagen y valida que sea solo de tipo imagen
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
