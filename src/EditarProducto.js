@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-//Se tomo el mismo modal para agregar producto y se modifico para que sea el de editar producto
+
+//Se tomo el mismo modal para agregar producto y se modifico para que sea el de editar producto obviamente los props que se van a usar
 function EditarProducto({ show, handleClose, onEditProduct, categorias, producto }) {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
@@ -11,6 +12,7 @@ function EditarProducto({ show, handleClose, onEditProduct, categorias, producto
 
     useEffect(() => {
         if (show){
+            //Los datos del producto se cargan en el modal
             setNombre(producto.title);
             setDescripcion(producto.description);
             setCategoria(producto.category);
@@ -74,7 +76,7 @@ function EditarProducto({ show, handleClose, onEditProduct, categorias, producto
         //Definimos la forma del 
         <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-            <Modal.Title>Agregar Producto</Modal.Title>
+            <Modal.Title>Modificar Producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <form onSubmit={handleSubmit}>
