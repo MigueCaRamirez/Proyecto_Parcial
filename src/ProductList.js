@@ -32,7 +32,7 @@ useEffect(() => {
 }, []);
 
 
-// el de arriba solo guarda el de la api, este guarda los productos que se agregan, o caa ves que se cmbia algun producto
+// el de arriba solo guarda el de la api, este guarda los productos que se agregan, o cada ves que se cmbia algun producto
 useEffect(() => {
     if(productos.length > 0) {
         localStorage.setItem("productos", JSON.stringify(productos));
@@ -47,27 +47,18 @@ setfiltrarProductos(filtrar);
 };
 
 const handleCategorySelect = (categoria) => {
-    let categorias;
+    setSelectedCategory([categoria]);
     if (categoria === "all") {
-        categorias = ["all"];
-    } else {
-        if (selectedCategory.includes(categoria)) {
-            categorias = selectedCategory.filter(cat => cat !== categoria);
-        } else {
-            categorias = [...selectedCategory.filter(cat => cat !== "all"), categoria];
-        }
-    }
-    setSelectedCategory(categorias);
-
-    if (categorias.includes("all") || categorias.length === 0) {
         setfiltrarProductos(productos);
     } else {
-        const Filtrar = productos.filter((producto) =>
-            categorias.includes(producto.category)
-        );
-        setfiltrarProductos(Filtrar);
+        const Filtrar = productos.filter((producto) => 
+        producto.category === categoria
+    );
+    setfiltrarProductos(Filtrar);
     }
 };
+
+
 
 const handleAgregarProducto = (nuevoProducto) => {
     const actualizarProductos = [...productos, nuevoProducto];
