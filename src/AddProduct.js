@@ -66,7 +66,7 @@ function AgregarProducto({ show, handleClose, onAddProduct }) {
       category: categoria,
       price: parseFloat(precio),
       image: imagen,
-      rating: { rate: 0, count: 0 }, // Inicializar calificación
+      rating: { rate: 0, count: 0 },
     };
 
     onAddProduct(nuevoProducto);
