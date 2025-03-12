@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-function AgregarProducto({ show, handleClose, onAddProduct }) {
+function AgregarProducto({ show, handleClose, onAddProduct, categorias }) {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -69,11 +69,12 @@ function AgregarProducto({ show, handleClose, onAddProduct }) {
       rating: { rate: 0, count: 0 },
     };
 
-    onAddProduct(nuevoProducto);
+    onAddProduct(nuevoProducto); // Llama a la función onAddProduct para agregar el producto
     handleClose();
   };
 
   return (
+    //Definimos la forma del 
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>Agregar Producto</Modal.Title>
@@ -114,13 +115,17 @@ function AgregarProducto({ show, handleClose, onAddProduct }) {
             <label htmlFor="categoria" className="form-label">
               Categoría
             </label>
-            <input
-              type="text"
-              className="form-control"
-              id="categoria"
-              value={categoria}
-              onChange={(e) => setCategoria(e.target.value)}
-            />
+            <select className="form-select" 
+              id ="categoria"
+              value ={categoria}
+              onChange ={(e) => setCategoria(e.target.value)}  
+              > 
+                //Mapear las categorias
+              <option value="">Seleccionar categoría</option>
+              {categorias.map((categoria, index) => (
+                <option key = {index} value={categoria}> {categoria}</option>
+              ))}
+              </select>
             {errors.categoria && (
               <small className="text-danger">{errors.categoria}</small>
             )}
