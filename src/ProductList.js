@@ -18,9 +18,23 @@ fetch("https://fakestoreapi.com/products")
     .catch((error) => console.error("Error consultando:", error));
 }, []);
 
+<<<<<<< Updated upstream
 const handleSearch = (searchTerm) => {
 const filtered = productos.filter((producto) =>
     producto.title.toLowerCase().includes(searchTerm.toLowerCase())
+=======
+
+// el de arriba solo guarda el de la api, este guarda los productos que se agregan, o cada ves que se cambia algun producto
+useEffect(() => {
+    if(productos.length > 0) {
+        localStorage.setItem("productos", JSON.stringify(productos));
+    } 
+}, [productos]);
+
+const handleSearch = (Buscar) => {
+const filtrar = productos.filter((producto) =>
+    producto.title.toLowerCase().includes(Buscar.toLowerCase())
+>>>>>>> Stashed changes
 );
 setFilteredProducts(filtered);
 };
