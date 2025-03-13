@@ -9,8 +9,13 @@ export function CartProvider({ children }) {
         setCart([...cart, product]);
     };
 
-    const removeFromCart = (productId) => {
-        setCart(cart.filter(product => product.id !== productId));
+    const removeFromCart = (id) => {
+        const index = cart.findIndex(producto => producto.id === id);
+        if (index !== -1) {
+            const newCart = [...cart];
+            newCart.splice(index, 1); // Elimina solo la primera coincidencia
+            setCart(newCart);
+        }
     };
 
     return (

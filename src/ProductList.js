@@ -5,10 +5,6 @@ import { AgregarProducto } from "./AddProduct";
 import EditarProducto from "./EditarProducto";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-<<<<<<< HEAD
-import Categorias from "./Categories";
-=======
->>>>>>> dairo
 
 function ProductList() {
 const [productos, setProductos] = useState([]);
