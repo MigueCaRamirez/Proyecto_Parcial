@@ -7,6 +7,11 @@ import { ProductModal } from "./ProductModal";
 function ProductCard({ producto, onEliminar, onEditar }) {
     const [modalShow, setModalShow] = useState(false);
 
+    const handleEliminar = () => {
+        if(window.confirm("¿Estas seguro de eliminar el producto?")){
+            onEliminar(producto.id);
+        }
+    }
 return (
     <>
     <Card style={{ width: "18rem", position: "relative" }} className="m-3">
@@ -18,7 +23,7 @@ return (
 
         <Dropdown.Menu>
             <Dropdown.Item href="#" onClick={() => onEditar(producto)}>Editar</Dropdown.Item>
-            <Dropdown.Item href="#" onClick={() => onEliminar(producto.id)}>Eliminar</Dropdown.Item> 
+            <Dropdown.Item href="#" onClick={(handleEliminar)}>Eliminar</Dropdown.Item> 
         </Dropdown.Menu>
         </Dropdown>
 

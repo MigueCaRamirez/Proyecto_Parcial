@@ -67,9 +67,11 @@ function EditarProducto({ show, handleClose, onEditProduct, categorias, producto
         price: parseFloat(precio),
         image: imagen,
         };
-    
-        onEditProduct(productoEditado); // Llama a la función onEditProduct para modigicar el producto
-        handleClose();
+
+        if(window.confirm("¿Estás seguro de modificar el producto?")){
+            onEditProduct(productoEditado); // Llama a la función onEditProduct para modigicar el producto
+            handleClose();
+        }
     };
 
     return (
