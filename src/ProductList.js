@@ -4,7 +4,7 @@ import Navbar from "./navbar";
 import { AgregarProducto } from "./AddProduct";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-//import Categorias from "./Categories";
+import Categorias from "./Categories";
 
 function ProductList() {
 const [productos, setProductos] = useState([]);

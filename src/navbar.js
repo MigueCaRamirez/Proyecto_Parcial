@@ -26,6 +26,7 @@ function Navbar({ onSearch, onSelectCategory, onAddProduct }) {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
+                    
                     <form className="d-flex ms-auto" onSubmit={handleSubmit}>
                         <input
                             className="form-control me-2"
