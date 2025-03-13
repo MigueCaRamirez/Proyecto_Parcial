@@ -7,7 +7,7 @@ return (
 <div className="container text-center my-4">
     <h3>Categorías</h3>
     <div className="row justify-content-center">
-        {categorias.map((categorias, index) => (
+        {categorias.map((categoria, index) => (
             <div key={index} className="col-auto form-check">
                 <input
                     type="checkbox"
