@@ -70,14 +70,14 @@ const handleAgregarProducto = (nuevoProducto) => {
 };
 
 
-//Para eliminar un producto
+//Funcion para eliminar un producto
 const handleEliminar = (id) => {
     const eliminarProducto = productos.filter((producto) => producto.id !== id);
     setProductos(eliminarProducto);
     setfiltrarProductos(eliminarProducto);
 };
 
-//Para editar un producto
+//Funcion para editar un producto
 const handleEditarProducto = (productoEditado) => {
     const actualizarProductos = productos.map((producto) =>
         producto.id === productoEditado.id ? productoEditado : producto
