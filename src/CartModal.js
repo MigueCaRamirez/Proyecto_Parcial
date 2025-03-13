@@ -34,9 +34,6 @@ function CartModal({ show, handleClose }) {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-                {cart.length > 0 && (
-                    <Button variant="danger" onClick={clearCart}>Vaciar Carrito</Button>
-                )}
             </Modal.Footer>
         </Modal>
     );
