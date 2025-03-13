@@ -51,6 +51,10 @@ function Navbar({ onSearch, onSelectCategory, onAddProduct }) {
                     <button type="button" className="btn btn-outline-success ms-3" onClick={onAddProduct}>
                         Agregar producto
                     </button>
+                    
+                    <button type="button" className="btn btn-outline-success ms-3">
+                        🛒Carrito
+                    </button>
                 </div>
             </div>
         </nav>
