@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import Api from './Clase';
-import './styles.css'; 
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import Api from "./Clase";
+import "./styles.css";
+import { CartProvider } from "./CartContext"; // Importa el proveedor del carrito
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    
-    <Api/>
-    
+    <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
+      <Api />
+    </CartProvider>
   </React.StrictMode>
 );
 
