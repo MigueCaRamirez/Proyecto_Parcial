@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import bootstrap from "bootstrap/dist/css/bootstrap.min.css"; 
 
@@ -24,4 +24,4 @@ return (
 );
 }
 
-export default ProductModal;
+export {ProductModal};

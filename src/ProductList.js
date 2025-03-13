@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Navbar from "./navbar";
-import Categories from "./Categories";
+import { AgregarProducto } from "./AddProduct";
+import EditarProducto from "./EditarProducto";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 function ProductList() {
 const [productos, setProductos] = useState([]);
-const [filteredProducts, setFilteredProducts] = useState([]);
-const [selectedCategory, setSelectedCategory] = useState("all");
+const [filtrarProductos, setfiltrarProductos] = useState([]);
+const [selectedCategory, setSelectedCategory] = useState(["all"]);
+const [modalShow, setModalShow] = useState(false);
+const [productoEditado, setProductoEditado] = useState(null);
+const [editarModalShow, setEditarModalShow] = useState(false);
+const categorias = ["electronics", "jewelery", "men's clothing", "women's clothing"]; //categorias que se envia al formulario de agregar producto
 
+//Productos guardados en el local storage
 useEffect(() => {
-fetch("https://fakestoreapi.com/products")
+    const productosGuardados = localStorage.getItem("productos");
+    if (productosGuardados) {
+        const produtosParseados = JSON.parse(productosGuardados);
+        setProductos(produtosParseados);
+        setfiltrarProductos(produtosParseados);
+    }else{
+        fetch("https://fakestoreapi.com/products")
     .then((res) => res.json())
     .then((data) => {
     setProductos(data);
-    setFilteredProducts(data); // Inicialmente mostramos todo
+    setfiltrarProductos(data); // Inicialmente mostramos todo
+    localStorage.setItem("productos", JSON.stringify(data));
     })
     .catch((error) => console.error("Error consultando:", error));
+    }
 }, []);
 
-<<<<<<< Updated upstream
-const handleSearch = (searchTerm) => {
-const filtered = productos.filter((producto) =>
-    producto.title.toLowerCase().includes(searchTerm.toLowerCase())
-=======
 
-// el de arriba solo guarda el de la api, este guarda los productos que se agregan, o cada ves que se cambia algun producto
+// el de arriba solo guarda el de la api, este guarda los productos que se agregan, o cada ves que se cmbia algun producto
 useEffect(() => {
     if(productos.length > 0) {
         localStorage.setItem("productos", JSON.stringify(productos));
@@ -34,32 +45,67 @@ useEffect(() => {
 const handleSearch = (Buscar) => {
 const filtrar = productos.filter((producto) =>
     producto.title.toLowerCase().includes(Buscar.toLowerCase())
->>>>>>> Stashed changes
 );
-setFilteredProducts(filtered);
+setfiltrarProductos(filtrar);
 };
 
-const handleCategorySelect = (category) => {
-setSelectedCategory(category);
-if (category === "all") {
-    setFilteredProducts(productos);
-} else {
-    const filtered = productos.filter((producto) => producto.category === category);
-    setFilteredProducts(filtered);
+const handleCategorySelect = (categoria) => {
+    setSelectedCategory([categoria]);
+    if (categoria === "all") {
+        setfiltrarProductos(productos);
+    } else {
+        const Filtrar = productos.filter((producto) => 
+        producto.category === categoria
+    );
+    setfiltrarProductos(Filtrar);
+    }
+};
+
+
+//Recibe el nuevo producto que se tomo y valido en el modal de agregar producto y lo guarda junto con los demas productos
+const handleAgregarProducto = (nuevoProducto) => {
+    const actualizarProductos = [...productos, nuevoProducto];
+    setProductos(actualizarProductos);
+    setfiltrarProductos(actualizarProductos);
+};
+
+
+//Para eliminar un producto
+const handleEliminar = (id) => {
+    const eliminarProducto = productos.filter((producto) => producto.id !== id);
+    setProductos(eliminarProducto);
+    setfiltrarProductos(eliminarProducto);
+};
+
+//Para editar un producto
+const handleEditarProducto = (productoEditado) => {
+    const actualizarProductos = productos.map((producto) =>
+        producto.id === productoEditado.id ? productoEditado : producto
+    );
+    setProductos(actualizarProductos);
+    setfiltrarProductos(actualizarProductos);
+};
+
+const handleEditar = (producto) => {
+    setProductoEditado(producto); 
+    setEditarModalShow(true);
 }
-};
 
+ //en AgregarProducto se maneja cuando se cierra el modal
 return (
 <div>
-    <Navbar onSearch={handleSearch} />
-    <Categories onSelectCategory={handleCategorySelect} />
+    <Navbar onSearch={handleSearch} onSelectCategory={handleCategorySelect} onAddProduct={() => setModalShow(true)} />
+    <AgregarProducto show={modalShow} handleClose={() => setModalShow(false)} onAddProduct={handleAgregarProducto} categorias={categorias}/>
+    {productoEditado && (
+                <EditarProducto show={editarModalShow} handleClose={() => setEditarModalShow(false)} producto={productoEditado} onEditProduct={handleEditarProducto} categorias={categorias} />
+            )}
 
     <div className="container mt-4">
     <h2 className="text-center mb-4">Lista de Productos</h2>
     <div className="row">
-        {filteredProducts.length > 0 ? (
-        filteredProducts.map((producto) => (
-            <ProductCard key={producto.id} producto={producto} />
+        {filtrarProductos.length > 0 ? (
+        filtrarProductos.map((producto) => (
+            <ProductCard key={producto.id} producto={producto} onEliminar={handleEliminar} onEditar={handleEditar}/>
         ))
         ) : (
         <p className="text-center">No se encontraron productos.</p>
@@ -70,5 +116,5 @@ return (
 );
 }
 
-export default ProductList;
 
+export default ProductList;

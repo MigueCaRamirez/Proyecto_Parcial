@@ -1,35 +1,24 @@
-<<<<<<< Updated upstream
-import React, {useState} from "react";
-=======
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import { Button } from "react-bootstrap";
-import Carrito from "./Carrito";
-import { CarritoContext } from "./CarritoContext";
->>>>>>> Stashed changes
 
-function Navbar({ onSearch}){
+function Navbar({ onSearch, onSelectCategory, onAddProduct }) {
     const [searchTerm, setSearchTerm] = useState("");
-<<<<<<< Updated upstream
-
-    const handleChange = (e) => {
-        //e.preventDefault();
-        setSearchTerm(e.target.value);
-        onSearch(e.target.value)
-=======
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("all");
-    const [showCarrito, setShowCarrito] = useState(false);
     const categorias = ["all", "electronics", "jewelery", "men's clothing", "women's clothing"];
-    const { carrito } = useContext(CarritoContext);
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         onSearch(searchTerm);
->>>>>>> Stashed changes
     };
 
-    return(
+    const handleCategoryChange = (e) => {
+        const nuevaCategoria = e.target.value;
+        setCategoriaSeleccionada(nuevaCategoria);
+        onSelectCategory(nuevaCategoria);
+    };
+
+    return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
                 <a className="navbar-brand" href="#">🛒 Mi Tienda</a>
@@ -37,17 +26,16 @@ function Navbar({ onSearch}){
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <form className="d-flex ms-auto">
+                    <form className="d-flex ms-auto" onSubmit={handleSubmit}>
                         <input
                             className="form-control me-2"
                             type="search"
-                            placeholder="Buscar Productos"
+                            placeholder="Buscar Productos..."
                             value={searchTerm}
-                            onChange={handleChange}
+                            onChange={(e) => setSearchTerm(e.target.value)}
                         />
+                        <button className="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
-<<<<<<< Updated upstream
-=======
 
                     {/* Selector de categorías */}
                     <div className="ms-3">
@@ -63,16 +51,10 @@ function Navbar({ onSearch}){
                     <button type="button" className="btn btn-outline-success ms-3" onClick={onAddProduct}>
                         Agregar producto
                     </button>
-
-                    <Button variant="outline-success ms-3" onClick={() => setShowCarrito(true)}>
-                        🛒Carrito ({carrito.length})
-                    </Button>
-                    <Carrito show={showCarrito} handleClose={() => setShowCarrito(false)} />
->>>>>>> Stashed changes
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
 export default Navbar;

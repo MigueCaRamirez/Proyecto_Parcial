@@ -1,52 +1,45 @@
-<<<<<<< Updated upstream
 import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
-import ProductModal from "./ProductModal";
-
-function ProductCard({ producto }) {
-const [modalShow, setModalShow] = useState(false);
-=======
-import React, { useState, useContext } from "react";
 import { Card, Button, Dropdown } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { ProductModal } from "./ProductModal";
-import { CarritoContext } from "./CarritoContext";
 
 function ProductCard({ producto, onEliminar, onEditar }) {
     const [modalShow, setModalShow] = useState(false);
-    const { agregarAlCarrito } = useContext(CarritoContext);
->>>>>>> Stashed changes
 
 return (
-<>
-    <Card style={{ width: "18rem" }} className="m-3">
-    <Card.Img variant="top" src={producto.image} style={{ height: "200px", objectFit: "contain" }} />
-    <Card.Body>
+    <>
+    <Card style={{ width: "18rem", position: "relative" }} className="m-3">
+        {/* Menú de opciones (tres puntos) */}
+        <Dropdown style={{ position: "absolute", top: "10px", left: "10px" }}>
+        <Dropdown.Toggle variant="light" size="sm" id="dropdown-basic" style={{ border: "none", background: "transparent" }}>
+        ☰
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+            <Dropdown.Item href="#" onClick={() => onEditar(producto)}>Editar</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => onEliminar(producto.id)}>Eliminar</Dropdown.Item> 
+        </Dropdown.Menu>
+        </Dropdown>
+
+        <Card.Img variant="top" src={producto.image} style={{ height: "200px", objectFit: "contain" }} />
+        <Card.Body className="d-flex flex-column">
         <Card.Title>{producto.title}</Card.Title>
-<<<<<<< Updated upstream
-        <Card.Text>💲{producto.price}</Card.Text>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-        Ver más
-        </Button>
-    </Card.Body>
-=======
     <Card.Text className="flex-grow-1">💲 {producto.price}</Card.Text>
         <div className="mt-auto d-flex justify-content-between">
             <Button variant="primary" onClick={() => setModalShow(true)}>
             Ver más
             </Button>
-            <button variant="agregar" onClick={() => agregarAlCarrito(producto)} /*className="botonCarrito"*/>
+            <button variant="agregar" className="botonCarrito">
             🛒Agregar
             </button>
         </div>
         </Card.Body>
->>>>>>> Stashed changes
     </Card>
 
-    {/* Modal que se muestra al hacer clic en "Ver más" */}
+      {/* Modal que se muestra al hacer clic en "Ver más" */}
     <ProductModal show={modalShow} handleClose={() => setModalShow(false)} product={producto} />
-</>
+    </>
 );
 }
 

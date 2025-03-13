@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-import {CarritoContext, CarritoProvider} from "./CarritoContext";
-import  Carrito  from "./Carrito";
 
 function AgregarProducto({ show, handleClose, onAddProduct, categorias }) {
   const [nombre, setNombre] = useState("");
@@ -10,9 +8,6 @@ function AgregarProducto({ show, handleClose, onAddProduct, categorias }) {
   const [precio, setPrecio] = useState("");
   const [imagen, setImagen] = useState("");
   const [errors, setErrors] = useState({});
-  const [showCarrito, setShowCarrito] = useState(false);
-
-  const { agregarAlCarrito} = useContext(CarritoContext);
 
   // Reinicia todos los campos y errores cuando se cierra el modal
   useEffect(() => {
@@ -75,13 +70,11 @@ function AgregarProducto({ show, handleClose, onAddProduct, categorias }) {
     };
 
     onAddProduct(nuevoProducto); // Llama a la función onAddProduct para agregar el producto
-    agregarAlCarrito(nuevoProducto);
     handleClose();
   };
 
   return (
-    //Definimos la forma del Agregar producto
-    <div>
+    //Definimos la forma del 
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>Agregar Producto</Modal.Title>
@@ -178,7 +171,6 @@ function AgregarProducto({ show, handleClose, onAddProduct, categorias }) {
         </form>
       </Modal.Body>
     </Modal>
-    </div>
   );
 }
 
