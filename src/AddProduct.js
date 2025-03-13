@@ -140,6 +140,7 @@ function AgregarProducto({ show, handleClose, onAddProduct, categorias }) {
               id="precio"
               value={precio}
               onChange={(e) => setPrecio(e.target.value)}
+              min={0}
             />
             {errors.precio && (
               <small className="text-danger">{errors.precio}</small>
