@@ -5,8 +5,10 @@ import { AgregarProducto } from "./AddProduct";
 import EditarProducto from "./EditarProducto";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { Link } from "react-router-dom";
 
 function ProductList() {
+    document.title = "Tienda";
 const [productos, setProductos] = useState([]);
 const [filtrarProductos, setfiltrarProductos] = useState([]);
 const [selectedCategory, setSelectedCategory] = useState(["all"]);
@@ -84,13 +86,13 @@ const handleEditarProducto = (productoEditado) => {
     );
     setProductos(actualizarProductos);
     setfiltrarProductos(actualizarProductos);
-};
+}; //filtrados para mostrar los productos que se tienen incluyendo los editados
 
 const handleEditar = (producto) => {
     setProductoEditado(producto); 
     setEditarModalShow(true);
 }
-
+<Link rel="icon" hre="iconCarrito.svg"></Link>
  //en AgregarProducto se maneja cuando se cierra el modal
 return (
 <div>
